@@ -1,0 +1,113 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background:#f3f4f6;
+  padding:20px;
+}
+
+.container{
+  max-width:900px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.card{
+  background:#fff;
+  padding:16px;
+  border-radius:10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+input{
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.marks{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:8px;
+}
+
+button{
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.result hr{
+  margin:10px 0;
+}
+
+.top3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+}
+
+.topCard{
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:10px;
+  background:#fafafa;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th, td{
+  border-bottom:1px solid #eee;
+  padding:10px;
+  text-align:left;
+  font-size:14px;
+}
+
+th{
+  background:#f9fafb;
+}
+
+.empty{
+  text-align:center;
+  color:#666;
+  padding:14px;
+}
+
+@media (max-width: 700px){
+  .marks{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .top3{
+    grid-template-columns: 1fr;
+  }
+}

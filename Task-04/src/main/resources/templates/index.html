@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Number Guessing Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Number Guessing Game</h1>
+
+    <div class="card">
+        <form action="/start" method="post">
+            <label>Enter Player Name:</label>
+            <input type="text" name="playerName" required>
+            <button type="submit">Start Game</button>
+        </form>
+    </div>
+
+    <div class="card" th:if="${playerName != null}">
+        <h2>Welcome, <span th:text="${playerName}">Player</span></h2>
+
+        <form action="/guess" method="post">
+            <input type="hidden" name="playerName" th:value="${playerName}">
+            <label>Enter Your Guess:</label>
+            <input type="number" name="guess" required>
+            <button type="submit">Guess</button>
+        </form>
+
+        <div class="message" th:if="${message != null}">
+            <p><b>Hint:</b> <span th:text="${message}"></span></p>
+        </div>
+
+        <div class="attempts">
+            <p><b>Attempts:</b> <span th:text="${attempts}">0</span></p>
+        </div>
+
+        <div class="guesses" th:if="${guessHistory != null}">
+            <p><b>Current Game Guesses:</b></p>
+            <span th:each="g : ${guessHistory}" th:text="${g}" class="chip"></span>
+        </div>
+
+        <form action="/reset" method="post">
+            <button type="submit" class="reset-btn">New Game</button>
+        </form>
+    </div>
+
+    <div class="card" th:if="${pastGameAttempts != null}">
+        <h2>Previous Performance</h2>
+
+        <p><b>Attempts Per Game:</b></p>
+        <span th:each="a : ${pastGameAttempts}" th:text="${a}" class="chip"></span>
+
+        <div th:if="${allGuessHistories != null}">
+            <h3>Previous Guess History</h3>
+            <div th:each="game, iterStat : ${allGuessHistories}">
+                <p><b>Game <span th:text="${iterStat.index + 1}"></span>:</b></p>
+                <span th:each="num : ${game}" th:text="${num}" class="chip"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Leaderboard</h2>
+
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Best Attempts</th>
+            </tr>
+
+            <tr th:each="entry, iter : ${leaderboard}">
+                <td th:text="${iter.index + 1}">1</td>
+                <td th:text="${entry.key}">Name</td>
+                <td th:text="${entry.value}">3</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

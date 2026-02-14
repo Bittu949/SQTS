@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bank Account System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Bank Account Management</h1>
+
+    <div class="card">
+        <h2>Create Account</h2>
+        <form action="/create" method="post" class="form">
+            <label>Account Holder Name</label>
+            <input type="text" name="name" required>
+
+            <label>Initial Balance (Minimum ₹3000)</label>
+            <input type="number" name="initialBalance" min="3000" required>
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <p class="msg" th:if="${createMsg}" th:text="${createMsg}"></p>
+    </div>
+
+    <div class="card" th:if="${accountName != null}">
+        <h2>Welcome, <span th:text="${accountName}">User</span></h2>
+
+        <div class="info">
+            <p><b>Current Balance:</b> ₹<span th:text="${balance}">0</span></p>
+        </div>
+
+        <h3>Deposit</h3>
+        <form action="/deposit" method="post" class="form-inline">
+            <input type="number" name="amount" min="1" placeholder="Enter amount" required>
+            <button type="submit">Deposit (+)</button>
+        </form>
+
+        <h3>Withdraw</h3>
+        <form action="/withdraw" method="post" class="form-inline">
+            <input type="number" name="amount" min="1" placeholder="Enter amount" required>
+            <button type="submit" class="danger">Withdraw (-)</button>
+        </form>
+
+        <p class="msg" th:if="${message}" th:text="${message}"></p>
+
+        <h3>Transaction History</h3>
+        <div class="history" th:if="${transactions != null && !transactions.isEmpty()}">
+            <ul>
+                <li th:each="t : ${transactions}" th:text="${t}"></li>
+            </ul>
+        </div>
+        <p th:if="${transactions == null || transactions.isEmpty()}">No transactions yet.</p>
+
+        <form action="/exit" method="post">
+            <button type="submit" class="exit">Exit</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

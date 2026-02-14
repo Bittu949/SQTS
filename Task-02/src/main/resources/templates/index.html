@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Grade Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Grade Management</h1>
+
+    <div class="card">
+        <h2>Add Student</h2>
+
+        <form action="/students" method="post" class="form">
+            <label>Name</label>
+            <input type="text" name="name" required>
+
+            <label>Roll Number</label>
+            <input type="number" name="roll" required>
+
+            <label>Class</label>
+            <input type="text" name="className" required>
+
+            <label>Marks (5 Subjects)</label>
+            <div class="marks">
+                <input type="number" name="m1" min="0" max="100" placeholder="Sub 1" required>
+                <input type="number" name="m2" min="0" max="100" placeholder="Sub 2" required>
+                <input type="number" name="m3" min="0" max="100" placeholder="Sub 3" required>
+                <input type="number" name="m4" min="0" max="100" placeholder="Sub 4" required>
+                <input type="number" name="m5" min="0" max="100" placeholder="Sub 5" required>
+            </div>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <div class="card" th:if="${lastStudent}">
+        <h2>Result Sheet</h2>
+
+        <div class="result">
+            <p><b>Name:</b> <span th:text="${lastStudent.name}"></span></p>
+            <p><b>Roll:</b> <span th:text="${lastStudent.roll}"></span></p>
+            <p><b>Class:</b> <span th:text="${lastStudent.className}"></span></p>
+            <hr>
+            <p><b>Total:</b> <span th:text="${lastStudent.total}"></span></p>
+            <p><b>Percentage:</b> <span th:text="${lastStudent.percentage}"></span></p>
+            <p><b>Grade:</b> <span th:text="${lastStudent.grade}"></span></p>
+            <p><b>Rank:</b> <span th:text="${lastStudent.rank}"></span></p>
+        </div>
+    </div>
+
+    <div class="card" th:if="${top3}">
+        <h2>Top 3 Rankers</h2>
+
+        <div class="top3">
+            <div class="topCard" th:each="s : ${top3}">
+                <p><b>Rank:</b> <span th:text="${s.rank}"></span></p>
+                <p><b>Name:</b> <span th:text="${s.name}"></span></p>
+                <p><b>Roll:</b> <span th:text="${s.roll}"></span></p>
+                <p><b>%:</b> <span th:text="${s.percentage}"></span></p>
+                <p><b>Grade:</b> <span th:text="${s.grade}"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Rank-wise Student List</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Class</th>
+                <th>Total</th>
+                <th>%</th>
+                <th>Grade</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:if="${students == null || #lists.isEmpty(students)}">
+                <td colspan="7" class="empty">No students added yet.</td>
+            </tr>
+
+            <tr th:each="s : ${students}">
+                <td th:text="${s.rank}"></td>
+                <td th:text="${s.name}"></td>
+                <td th:text="${s.roll}"></td>
+                <td th:text="${s.className}"></td>
+                <td th:text="${s.total}"></td>
+                <td th:text="${s.percentage}"></td>
+                <td th:text="${s.grade}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

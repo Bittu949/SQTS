@@ -95,9 +95,9 @@ Basic number operations:
 
 ## 🏗 Architecture Pattern
 
-All tasks follow:
+All tasks follow a layered MVC architecture:
 
-Controller → Service → View (Thymeleaf)
+**Controller → Service → View (Thymeleaf Template Engine)**
 
 Each project maintains clean separation of concerns and structured backend logic.
 
@@ -105,21 +105,39 @@ Each project maintains clean separation of concerns and structured backend logic
 
 ## ▶ How To Run Any Task
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Bittu949/SQTS.git
-   cd SQTS
-2. Go to any task folder (example Task-03):
-   ```bash
-   cd Task-03
-3. Run the application:
-   ```bash
-   mvn spring-boot:run
-4. Open in browser:
-   ```bash
-   http://localhost:8080
-  
-Each task folder contains its own README.md with task-specific details.
+### Prerequisites
+- Java 17 or higher installed
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/Bittu949/SQTS.git
+cd SQTS
+```
+### 2️⃣ Navigate to any task folder
+Example (Task-03):
+
+```bash
+cd Task-03
+```
+### 3️⃣ Run the application using Maven Wrapper
+For Mac/Linux / Git Bash:
+
+```bash
+./mvnw spring-boot:run
+```
+For Windows CMD:
+
+```bash
+mvnw.cmd spring-boot:run
+```
+### 4️⃣ Open in browser
+
+```bash
+http://localhost:8080
+```
+
+> 📌 **Note:** Each task folder includes a dedicated `README.md` explaining setup, features, and implementation details.
 
 ---
 

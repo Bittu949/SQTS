@@ -51,10 +51,41 @@ Flow:
 
 ## ▶ How to Run
 
-### Using IDE
-1. Open project in IntelliJ or any IDE.
-2. Run the main Spring Boot application class.
-3. Open browser and visit: http://localhost:8080
+### Prerequisites
+- Java 17 or higher installed
+
+---
+
+### 1️⃣ Navigate to this project folder
+
+If you cloned the main repository:
+
+```bash
+cd SQTS/Task-01
+```
+
+---
+
+### 2️⃣ Run the application using Maven Wrapper
+
+For Mac/Linux / Git Bash:
+
+```bash
+./mvnw spring-boot:run
+```
+
+For Windows CMD:
+
+```bash
+mvnw.cmd spring-boot:run
+```
+
+---
+
+### 3️⃣ Open in browser
+
+http://localhost:8080
+
 
 ## 👤 Author
 Balkrishna Naik  

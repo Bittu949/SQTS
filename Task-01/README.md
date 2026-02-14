@@ -54,7 +54,7 @@ Flow:
 ### Using IDE
 1. Open project in IntelliJ or any IDE.
 2. Run the main Spring Boot application class.
-3. Open browser: Visit: http://localhost:8080
+3. Open browser and visit: http://localhost:8080
 
 ## 👤 Author
 Balkrishna Naik  
